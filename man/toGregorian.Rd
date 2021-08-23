@@ -4,7 +4,7 @@
 \alias{toGregorian}
 \title{Convert Ethiopian Date to Gregorian Calendar}
 \usage{
-toGregorian(ethiopianDate, ...)
+toGregorian(ethiopianDate)
 }
 \arguments{
 \item{ethiopianDate}{Date or character representing a date in the Ethiopian calendar}

@@ -14,6 +14,8 @@ test_that("toEthiopian works", {
   expect_equal(toEthiopian(lubridate::as_date('1982-11-21')), lubridate::as_date('1975-3-12'))
   expect_equal(toEthiopian(lubridate::as_date('1941-12-7')), lubridate::as_date('1934-3-28'))
   expect_equal(toEthiopian(lubridate::as_date('2010-12-22')), lubridate::as_date('2003-4-13'))
+
+  expect_equal(toEthiopian(c('1982-11-21','1941-12-7','2010-12-22')), lubridate::as_date(c('1975-03-12','1934-03-28','2003-04-13')))
 })
 
 test_that("ethiopianToGregorian works", {
@@ -27,4 +29,6 @@ test_that("toGregorian works", {
 
   expect_equal(toGregorian(lubridate::as_date('2003-4-11')), lubridate::as_date('2010-12-20'))
   expect_equal(toGregorian(lubridate::as_date('1975-3-12')), lubridate::as_date('1982-11-21'))
+
+  expect_equal(toGregorian(c('2003-4-11','1975-3-12')), lubridate::as_date(c('2010-12-20','1982-11-21')))
 })

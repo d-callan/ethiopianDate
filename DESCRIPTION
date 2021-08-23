@@ -7,7 +7,8 @@ Authors@R:
            role = c("aut", "cre"),
            email = "dcallan@upenn.edu")
 Imports:
-    lubridate
+    lubridate,
+    stringi
 URL: https://github.com/d-callan/ethiopianDate
 BugReports: https://github.com/d-callan/ethiopianDate/issues
 Description: ethiopianDate is an R package for converting Gregorian dates to the Ethiopian calendar and vice-versa.

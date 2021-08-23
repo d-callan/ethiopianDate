@@ -4,6 +4,7 @@ test_that("gregorianToEthiopian works", {
   expect_equal(gregorianToEthiopian(1982, 11, 21), '1975-03-12')
   expect_equal(gregorianToEthiopian(1941, 12, 7), '1934-03-28')
   expect_equal(gregorianToEthiopian(2010, 12, 22), '2003-04-13')
+  expect_equal(gregorianToEthiopian(2017, 9, 10), '2010-13-05')
 })
 
 test_that("we dont fail on NA, NULL, or 0 length inputs.", {
@@ -22,10 +23,12 @@ test_that("toEthiopian works", {
   expect_equal(toEthiopian('1982-11-21'), lubridate::as_date('1975-3-12'))
   expect_equal(toEthiopian('1941-12-7'), lubridate::as_date('1934-3-28'))
   expect_equal(toEthiopian('2010-12-22'), lubridate::as_date('2003-4-13'))
+  expect_equal(toEthiopian('2017-09-10'), lubridate::as_date('2010-13-05'))
 
   expect_equal(toEthiopian(lubridate::as_date('1982-11-21')), lubridate::as_date('1975-3-12'))
   expect_equal(toEthiopian(lubridate::as_date('1941-12-7')), lubridate::as_date('1934-3-28'))
   expect_equal(toEthiopian(lubridate::as_date('2010-12-22')), lubridate::as_date('2003-4-13'))
+  expect_equal(toEthiopian(lubridate::as_date('2017-09-10')), lubridate::as_date('2010-13-05'))
 
   expect_equal(toEthiopian(c('1982-11-21','1941-12-7','2010-12-22')), lubridate::as_date(c('1975-03-12','1934-03-28','2003-04-13')))
 })

@@ -26,7 +26,11 @@ firstDayEthiopian <- function(year) {
 toGregorian <- function(ethiopianDate) {
   if (!length(ethiopianDate)) { return(NULL) }
   if (is.na(ethiopianDate)) { return(NA) }
-  if (is.character(ethiopianDate) && ethiopianDate == '') { return(NULL) }
+  if (is.character(ethiopianDate)) {
+    if (any(ethiopianDate == '')) { 
+      return(NULL) 
+    }
+  }
 
   year <- lubridate::year(ethiopianDate)
   month <- lubridate::month(ethiopianDate)
@@ -47,6 +51,7 @@ toGregorian <- function(ethiopianDate) {
 #' @param date numeric representing Ethiopian day
 #' @return character representation of Gregorian date
 #' @export
+#' @importFrom stringi stri_pad_left
 ethiopianToGregorian <- function(year = numeric(), month = numeric(), date = numeric()) {
   if (any(is.na(c(year,month,day)))) { return(NA) }
   if (any(!length(c(year,month,day)))) { return(NULL) }
@@ -108,8 +113,9 @@ ethiopianToGregorian <- function(year = numeric(), month = numeric(), date = num
     order = c(8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9)
     gregorianMonth = order[m]
   
-    gregorianDate <- ISOdate(gregorianYear, gregorianMonth, gregorianDate)
-    gregorianDate <- format(gregorianDate, '%Y-%m-%d')
+    gregorianMonth <- stringi::stri_pad_left(gregorianMonth, width=2, pad=0)
+    gregorianDate <- stringi::stri_pad_left(gregorianDate, width=2, pad=0)
+    gregorianDate <- paste(c(gregorianYear, gregorianMonth, gregorianDate), collapse="-")
   
     return(gregorianDate)
   }
@@ -132,7 +138,11 @@ ethiopianToGregorian <- function(year = numeric(), month = numeric(), date = num
 toEthiopian <- function(gregorianDate) {
   if (!length(gregorianDate)) { return(NULL) }
   if (is.na(gregorianDate)) { return(NA) }
-  if (is.character(gregorianDate) && gregorianDate == '') { return(NULL) }
+  if (is.character(gregorianDate)) {
+    if(any(gregorianDate == '')) { 
+      return(NULL) 
+    }
+  }
 
   year <- lubridate::year(gregorianDate)
   month <- lubridate::month(gregorianDate)
@@ -153,6 +163,7 @@ toEthiopian <- function(gregorianDate) {
 #' @param date numeric representing Gregorian day
 #' @return character representation of Ethiopian date
 #' @export
+#' @importFrom stringi stri_pad_left
 gregorianToEthiopian <- function(year = numeric(), month = numeric(), date = numeric()) {
   if (any(is.na(c(year,month,day)))) { return(NA) }
   if (any(!length(c(year,month,day)))) { return(NULL) }
@@ -238,8 +249,9 @@ gregorianToEthiopian <- function(year = numeric(), month = numeric(), date = num
     order = c(0, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1, 2, 3, 4)
     ethiopianMonth = order[m]
   
-    ethiopianDate <- ISOdate(ethiopianYear, ethiopianMonth, ethiopianDate)
-    ethiopianDate <- format(ethiopianDate, '%Y-%m-%d')
+    ethiopianMonth <- stringi::stri_pad_left(ethiopianMonth, width=2, pad=0)
+    ethiopianDate <- stringi::stri_pad_left(ethiopianDate, width=2, pad=0)
+    ethiopianDate <- paste(c(ethiopianYear, ethiopianMonth, ethiopianDate), collapse="-")
   
     return(ethiopianDate)
   }

@@ -6,6 +6,18 @@ test_that("gregorianToEthiopian works", {
   expect_equal(gregorianToEthiopian(2010, 12, 22), '2003-04-13')
 })
 
+test_that("we dont fail on NA, NULL, or 0 length inputs.", {
+  expect_equal(toEthiopian(NA), NA)
+  expect_equal(toEthiopian(NULL), NULL)
+  expect_equal(toEthiopian(''), NULL)
+  expect_equal(toEthiopian(character()), NULL)
+
+  expect_equal(toGregorian(NA), NA)
+  expect_equal(toGregorian(NULL), NULL)
+  expect_equal(toGregorian(''), NULL)
+  expect_equal(toGregorian(character()), NULL)
+})
+
 test_that("toEthiopian works", {
   expect_equal(toEthiopian('1982-11-21'), lubridate::as_date('1975-3-12'))
   expect_equal(toEthiopian('1941-12-7'), lubridate::as_date('1934-3-28'))

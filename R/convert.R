@@ -24,6 +24,10 @@ firstDayEthiopian <- function(year) {
 #' @importFrom lubridate day
 #' @importFrom lubridate as_date
 toGregorian <- function(ethiopianDate) {
+  if (!length(ethiopianDate)) { return(NULL) }
+  if (is.na(ethiopianDate)) { return(NA) }
+  if (is.character(ethiopianDate) && ethiopianDate == '') { return(NULL) }
+
   year <- lubridate::year(ethiopianDate)
   month <- lubridate::month(ethiopianDate)
   day <- lubridate::day(ethiopianDate)
@@ -44,6 +48,10 @@ toGregorian <- function(ethiopianDate) {
 #' @return character representation of Gregorian date
 #' @export
 ethiopianToGregorian <- function(year = numeric(), month = numeric(), date = numeric()) {
+  if (any(is.na(c(year,month,day)))) { return(NA) }
+  if (any(!length(c(year,month,day)))) { return(NULL) }
+  if (any(c(year,month,day) == '')) { return(NULL) }
+
   dates <- data.frame('year'=year, 'month'=month, 'date'=date)
 
   findGregorianDate <- function(row) {
@@ -122,6 +130,10 @@ ethiopianToGregorian <- function(year = numeric(), month = numeric(), date = num
 #' @importFrom lubridate day
 #' @importFrom lubridate as_date
 toEthiopian <- function(gregorianDate) {
+  if (!length(gregorianDate)) { return(NULL) }
+  if (is.na(gregorianDate)) { return(NA) }
+  if (is.character(gregorianDate) && gregorianDate == '') { return(NULL) }
+
   year <- lubridate::year(gregorianDate)
   month <- lubridate::month(gregorianDate)
   day <- lubridate::day(gregorianDate)
@@ -142,6 +154,10 @@ toEthiopian <- function(gregorianDate) {
 #' @return character representation of Ethiopian date
 #' @export
 gregorianToEthiopian <- function(year = numeric(), month = numeric(), date = numeric()) {
+  if (any(is.na(c(year,month,day)))) { return(NA) }
+  if (any(!length(c(year,month,day)))) { return(NULL) }
+  if (any(c(year,month,day) == '')) { return(NULL) }
+
   dates <- data.frame('year'=year, 'month'=month, 'date'=date)
 
   # dates between 5-14 of May 1582 are invalid

@@ -29,7 +29,10 @@ Please make sure to update tests as appropriate.
 ## License
 [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-##References
+## References
+
 https://github.com/rgaudin/tools/tree/master/ethiopian_date
+
 http://www.funaba.org/en/calendar-conversion.cgi
+
 http://www.senamirmir.org/projects/
